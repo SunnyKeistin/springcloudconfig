@@ -1,0 +1,22 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: microservices-movie
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+  instance:
+    prefer-ip-address: true #优选使用服务的ip地址注册到Eureka,生产上建议为ture
+
+#配置负载均衡算法
+microservices_user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+#OpenFeign开启整合Hystrix
+feign:
+  hystrix:
+    enabled: true
